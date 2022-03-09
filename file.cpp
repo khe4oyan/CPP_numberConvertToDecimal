@@ -14,15 +14,34 @@ int main()
 {
 	int base = 0;
 
+	int* ptr = new int;
+	*ptr = 0;
 	std::cout << "Enter numbers base(2-16): ";
 	do {
 		std::cin >> base;
 
 		if (base < 2 || base > 16) {
-			std::cout << "Base can only was 2-16. You entered '" << base << "' number\n"
-								<< "Try again: ";
+			if (*ptr < 3) {
+				std::cout << "Base can only was 2-16. You entered '" << base << "' number\n"
+									<< "Try again: ";
+			}
+			else if (*ptr >= 3 && *ptr <= 6) {
+				std::cout << "When i said that write 2-16 numbers, i can say write ";
+				for (int i = 2; i < 16; ++i) {
+					std::cout << i << " or ";
+				}
+				std::cout << "16 number..\nTry it: ";
+			}
+			else {
+				std::cout << "I dont know how i can say you.. bye...";
+				return -1;
+			}
+
+			(*ptr)++;
 		}
 	} while (base < 2 || base > 16);
+
+	delete ptr;
 
 	std::string number = {};
 	std::cout << "Enter number(0-";
